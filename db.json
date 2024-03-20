@@ -1,0 +1,86 @@
+{
+    "products": [
+      {
+        "id": 1,
+
+        "name": "موبایل 1",
+        "price": 1000000,
+        "brand": "براند 1",
+        "description": "توضیحات محصول 1",
+        "images": ["image1.jpg", "image2.jpg"]
+      },
+      {
+        "id": 2,
+        "name": "موبایل 2",
+        "price": 1500000,
+        "brand": "براند 2",
+        "description": "توضیحات محصول 2",
+      "images": ["image3.jpg", "image4.jpg"]
+      },
+      {
+        "id": 3,
+        "name": "موبایل 3",
+        "price": 800000,
+        "brand": "براند 3",
+        "description": "توضیحات محصول 3",
+      "images": ["image6.jpg", "image7.jpg", "image8.jpg", "image9.jpg"]
+      },
+      {
+        "id": 4,
+        "name": "موبایل 4",
+        "price": 400000,
+        "brand": "براند 4",
+        "description": "توضیحات محصول 4",
+      "images": ["image10.jpg", "image11.jpg", "image12.jpg", "image13.jpg"]
+      },
+      {
+        "id": 5,
+        "name": "موبایل 5",
+        "price": 900000,
+        "brand": "براند 5",
+        "description": "توضیحات محصول 5",
+      "images": ["image14.jpg", "image15.jpg", "image16.jpg", "image17.jpg"]
+      },
+      {
+        "id": 6,
+        "name": "موبایل 6",
+        "price": 220000,
+        "brand": "براند 6",
+        "description": "توضیحات محصول 6",
+      "images": ["image18.jpg", "image19.jpg", "image20.jpg", "image21.jpg"]
+      },
+      {
+        "id": 7,
+        "name": "موبایل 7",
+        "price": 400000,
+        "brand": "براند 7",
+        "description": "توضیحات محصول 7",
+      "images": ["image0.jpg", "image11.jpg", "image12.jpg", "image13.jpg"]
+      },
+      {
+        "id": 8,
+        "name": "موبایل 8",
+        "price": 400000,
+        "brand": "براند 8",
+        "description": "توضیحات محصول 8",
+      "images": ["image8.jpg", "image8.jpg", "image8.jpg", "image8.jpg"]
+      },
+      {
+        "id": 9,
+        "name": "موبایل 9",
+        "price": 896000,
+        "brand": "براند 9",
+        "description": "توضیحات محصول 9",
+      "images": ["image0.jpg", "image11.jpg", "image12.jpg", "image13.jpg"]
+      },
+      {
+        "id": 10,
+        "name": "موبایل 10",
+        "price": 800000,
+        "brand": "براند 10",
+        "description": "توضیحات محصول 10",
+      "images": ["image10.jpg", "image11.jpg", "image12.jpg", "image13.jpg"]
+      }
+
+    ]
+  }

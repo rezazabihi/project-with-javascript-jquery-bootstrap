@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> kala ko </title>
+  <link rel="stylesheet" href="style/bootstraprtl.css">
+  <link rel="stylesheet" type="text/css" href="style/all.min.css">
+  <link rel="stylesheet" type="text/css" href="style/brands.min.css">
+  <link rel="stylesheet" type="text/css" href="style/animate.min.css">
+  <link rel="stylesheet" type="text/css" href="wow/css/libs/animate.css">
+  <script type="text/javascript" src="./js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="./js/jquery.min.js"></script>
+  <link rel="stylesheet" href="style/menu.css">
+  <link rel="stylesheet" href="style/style.css">
+  <script src="wow/dist/wow.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+    new WOW().init();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<head>
+  <script>
+    function loadFunction() {
+      alert("welcom to kalako my friend")
+    }
+  </script>
+</head>
+
+<body onload="loadFunction()" class="bggray">
+  <div class="header">
+
+
+    <div class="container-fluid bgpurple ">
+      <div class="row mt-2 py-2 ">
+        <div class="col-12 col-md-7 ">
+          <i class="fa fa-bars border-2 border-dark border- rounded-4 fa-2x px-4 d-md-none d-inline-block"></i>
+          kala ko
+          <script>
+            $(document).ready(function () {
+              $('.fa-bars').click(function () {
+                $('.casecademenu').toggleClass('d-none');
+              });
+              $('.casecademenu a:not([href])').click(function () {
+                event.preventDefault();
+                $(this).toggleClass('activea');
+                $(this).next().toggleClass('activeul');
+              });
+            });
+          </script>
+          <div id="alertid">
+
+          </div>
+          <ul id="show" class="casecademenu  d-md-block d-none">
+            <li><a href="">صفحه اصلی</a></li>
+            <li><a>محصولات</a>
+              <ul>
+                <li><a>موبایل</a>
+                  <ul>
+                    <li><a href="./linkd/samsung.html">سامسونگ</a></li>
+                    <li><a href="">شیائمی</a></li>
+                    <li><a href="./linkd/apple.html">آیفون</a></li>
+                    <li><a href="">نوکیا</a></li>
+                  </ul>
+                </li>
+                <li><a href="./linkd/saat.html">ساعت هوشمند</a></li>
+                <li><a href="./linkd/forosh.html">فروش ویژه</a></li>
+                <li><a href="./index3.html">محصولات</a></li>
+              </ul>
+            </li>
+            <li><a href="./index1.html">ارتباط با ما </a></li>
+            <li><a href="./index2.html">درباره ما </a></li>
+          </ul>
+
+        </div>
+        <div class="col-8 col-md-4 py-2">
+          <form class="search" action="/products">
+            <button class="btn-search  type=" submit"><i
+                class="fa fa-search bgpurple text-gray border-0 p-2 border-0"></i></button>
+            <input class="search  w-75 p-2 " type="search" name="keyword"
+              placeholder="نام کالای مورد نظر خود را تایپ نمایید...">
+
+          </form>
+        </div>
+        <div class="col-4 col-md-1  py-2">
+          <div class="basket d-inline">
+            <i class="fa fa-shopping-basket fa-2x bgpurple p-1 text-gray position-relative"> </i>
+            <span id="badgeid" class="badge bg-black  position-absolute fa-2x">0</span>
+          </div>
+          <a href="./index1.html"> <i class="fa fa-user bgpurple   fa-2x p-1 text-gray"> </i></a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="container">
+    <div class="row py-3 mt-4">
+      <div class="col-12 col-md-10 mx-auto position-relative text-center">
+        <div class="position-relative w-100 overflow-hidden" id="bigimage">
+        </div>
+        <div onclick="nextpic(1)" class="bg-black text-purple   rounded-pill ar ar-left">&lt;</div>
+        <div onclick="nextpic(2)" class="bg-black text-purple  text-center rounded-pill ar ar-right">&gt;</div>
+      </div>
+    </div>
+    <div class="row d-md-flex d-none" id="smallimage">
+    </div>
+  </div>
+  <script type="text/javascript">
+
+    localStorage.setItem('basket', 0);
+    addbasket = function () {
+      count = localStorage.getItem('basket')
+      if (isNaN(count)) {
+        count = 0;
+      }
+      else {
+        count = Number(count);
+      }
+      count++;
+      localStorage.setItem('basket', count);
+      document.getElementById('badgeid').innerHTML = +count;
+      Swal.fire({
+        icon: 'success',
+        title: 'محصول به سبد خرید اضافه شد',
+        showConfirmButton: false,
+        timer: 1500,
+        background: '#46c1f6',
+      });
+    }
+    si = 'mr';
+    active = 0;
+
+    changepic = (ind) => {
+      document.getElementById('bigimage').innerHTML = '<div class="animate__animated animate__pulse">' + images[ind].gettag() + '</div>';
+      active = ind;
+      clearInterval(si);
+      si = setInterval('autochangepic()', 3000);
+    }
+    nextpic = (vl) => {
+      if (vl == 1) {
+        active = active - 1;
+      }
+      else if (vl == 2) {
+        active = active + 1;
+      }
+      if (active < 0) {
+        active = images.length - 1;
+      }
+      if (active >= images.length) {
+        active = 0;
+      }
+      changepic(active);
+    }
+    autochangepic = () => {
+      nextpic(2);
+    }
+    si = setInterval('autochangepic()', 3000);
+    class image {
+      setname(nm, al) {
+        this.name = nm;
+        this.alt = al;
+      }
+      setaddress(adr) {
+        this.address = adr;
+      }
+      gettag() {
+        return "<img src=\"" + this.address + '" alt="" title="" class="img-fluid">';
+      }
+      getname() {
+        return this.name;
+      }
+    }
+    images = [];
+    for (let i = 0; i < 4; i++) {
+      images[i] = new image();
+      images[i].setaddress('img/slider/slider-' + (i + 1) + '.jpg');
+      images[i].setname('slider-' + (i + 1), 'slider-' + (i + 1));
+    }
+
+    for (let i = 0; i < images.length; i++) {
+      document.getElementById('smallimage').innerHTML = document.getElementById('smallimage').innerHTML + '<div onclick="changepic(' + i + ')" class="col img-radious" >' + images[i].gettag() + '</div>';
+    }
+    changepic(0);
+
+  </script>
+
+  <div class="container">
+    <div class="row pt-3">
+      <div class="fw-bold text-purple font-size-tittle pb-3">فروش ویژه :</div>
+      <div class="col-6 col-md-3">
+
+        <div class="card wow bounceInUp forosh bggray text-purple border-warning">
+          <div class="card-header">
+            <img src="img/forosh vigheh/167172372394_t1.webp" alt="forosh" class="img-fluid">
+          </div>
+          <div class="card-body p-4">
+            وصل کن به آداپتور تبدیل سیم شارژر اصل سامسونگ
+          </div>
+          <button onclick="addbasket()" class="btn btn-outline-warning"><i class="fa fa-add"> افزودن به
+              خرید</i></button>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <div class="card wow bounceInUp forosh bggray text-purple border-warning">
+          <div class="card-header">
+            <img src="img/forosh vigheh/167172450718_t1.webp" alt="forosh" class="img-fluid">
+          </div>
+          <div class="card-body p-4">
+            گوشی موبایل glx مدل classic 195 دو سیم کارت
+          </div> <button onclick="addbasket()" class="btn btn-outline-warning"><i class="fa fa-add"> افزودن به
+              خرید</i></button>
+        </div>
+
+      </div>
+
+      <div class="col-6 col-md-3 d-none d-md-block">
+        <div class="card wow bounceInUp forosh bggray text-purple border-warning">
+          <div class="card-header">
+            <img src="img/forosh vigheh/mJSAjluhfaMD_t1.webp" alt="forosh" class="img-fluid">
+          </div>
+          <div class="card-body p-4">
+            ساعت هوشمند شیائمی immilab مدل immici tg1
+          </div>
+          <button onclick="addbasket()" class="btn btn-outline-warning"><i class="fa fa-add"> افزودن به
+              خرید</i></button>
+
+        </div>
+      </div>
+
+      <div class="col-6 col-md-3 d-none d-md-block">
+        <div class="card wow bounceInUp  forosh bggray text-purple border-warning">
+          <div class="card-header">
+            <img src="img/forosh vigheh/7Qgxci0XsYMe_t1.webp" alt="forosh" class="img-fluid border-warning">
+          </div>
+          <div class="card-body p-4 text-center">
+            گوشی ایرانی دکمه ای <br>دو سیم کارت
+
+          </div><button onclick="addbasket()" class="btn btn-outline-warning"><i class="fa fa-add"> افزودن به
+              خرید</i></button>
+        </div>
+
+      </div>
+
+    </div>
+    <button class="btn border border-1 border-warning text-purple btn-bottom-forosh w-100 mt-5 "> مشاهده همه</button>
+  </div>
+
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-9 col-md-10">
+        <div class="fw-bold text-purple font-size-tittle">گوشی موبایل آیفون :</div>
+      </div>
+      <div class="col-3 col-md-2 ">
+        <div class="fw-bold borderleft p-1 border-warning text-purple"> <a href="#"
+            class="text-decoration-none text-secondary"> مشاهده همه</div>
+        </a>
+      </div>
+      <div class="border-bottom  mt-3"></div>
+
+    </div>
+  </div>
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-6 col-md-3">
+
+        <div class="card  wow flash  sevicecard bggray text-purple border-warning">
+          <div class="card-header p-0 border-0">
+
+            <a href=""> <img src="img/iphone/0ZkmhU_irJcC_t1.webp" alt="iphone" class="img-fluid w-100">
+            </a>
+          </div>
+          <div class="card-body text-center">
+            iPhone 13 Pro Max LL/A Not Active<br> گوشی موبایل اپل مدل تک سیم کارت ظرفیت 128/6 گیگابایت
+          </div>
+
+          <div class="card-footer bggray text-purple w-50 text-center mx-auto mb-4 border-warning">
+            40,000,000 <div class="font-size-price">تومان</div>
+
+          </div>
+        </div>
+        <button onclick="addbasket()" class="btn btn-outline-warning"><i class="fa fa-add"> افزودن به خرید</i></button>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <div class="card wow flash  sevicecard bggray text-purple border-warning">
+          <div class="card-header p-0 border-0">
+            <a href=""> <img src="img/iphone/167733748674_t1.webp" alt="iphone" class="img-fluid w-100">
+            </a>
+          </div>
+          <div class="card-body text-center">
+            iPhone 13 Pro Max LL/A Not Active<br> گوشی موبایل اپل مدل تک سیم کارت ظرفیت 256/6 گیگابایت
+          </div>
+
+          <div class="card-footer bggray border-warning text-purple w-50 text-center mx-auto mb-4">
+            ناموجود
+          </div>
+
+        </div>
+        <button onclick="addbasket()" class="btn btn-outline-warning"><i class="fa fa-add"> افزودن به خرید</i></button>
+      </div>
+
+
+      <div class="col-6 col-md-3 d-none d-md-block">
+        <div class="card wow flash  sevicecard bggray text-purple border-warning">
+          <div class="card-header p-0 border-0">
+            <a href=""> <img src="img/iphone/168467496146_t1.webp" alt="iphone" class="img-fluid w-100">
+            </a>
+          </div>
+          <div class="card-body text-center">
+            iPhone 12 LL/A Not Active<br> گوشی موبایل اپل مدل تک سیم کارت ظرفیت 128/6 گیگابایت
+          </div>
+
+          <div class="card-footer bggray w-50 text-center mx-auto mb-4 border-warning text-purple">
+            <div>30,850,000</div>
+            <div class="font-size-price">تومان</div>
+          </div>
+        </div>
+        <button onclick="addbasket()" class="btn btn-outline-warning"><i class="fa fa-add"> افزودن به خرید</i></button>
+      </div>
+
+      <div class="col-6 col-md-3 d-none d-md-block">
+        <div class="card wow flash   sevicecard bggray text-purple border-warning">
+          <div class="card-header p-0 border-0">
+            <a href=""> <img src="img/iphone/M1pcwr0DE_j7_t1.webp" alt="iphone" class="img-fluid w-100">
+            </a>
+          </div>
+          <div class="card-body text-center">
+            iPhone 13 CA/A Not Active<br> گوشی موبایل اپل مدل تک سیم کارت ظرفیت 128/6 گیگابایت
+
+
+          </div>
+
+          <div class="card-footer bggray w-50 text-center mx-auto mb-4
+          border-warning text-purple  ">
+            45,399,000 <div class="font-size-price">تومان</div>
+          </div>
+
+        </div>
+        <button onclick="addbasket()" class="btn btn-outline-warning"><i class="fa fa-add"> افزودن به خرید</i></button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-9 col-md-10">
+        <div class="fw-bold font-size-tittle  text-purple">گوشی موبایل سامسونگ :</div>
+      </div>
+      <div class="col-3 col-md-2 ">
+        <div class="fw-bold borderleft border-warning text-purple p-1"> <a href="#"
+            class="text-decoration-none text-secondary"> مشاهده همه</div>
+        </a>
+      </div>
+      <div class="border-bottom  mt-3"></div>
+
+    </div>
+  </div>
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-6 col-md-3">
+        <div class="card wow bounceInUp sevicecard bggray text-purple border-warning">
+          <div class="card-header p-0 border-0">
+            <a href=""> <img src="img/samsung/167172460078_t1.webp" alt="iphone" class="img-fluid w-100">
+            </a>
+          </div>
+          <div class="card-body text-center">
+            گوشی موبایل سامسونگ مدل galaxy A03 ظرفیت32/3 گیگابایت
+          </div>
+
+          <div class="card-footer bggray w-50 text-center mx-auto mb-4 border-warning text-purple">
+            3,999,000 <div class="font-size-price">تومان</div>
+          </div>
+
+        </div>
+        <button onclick="addbasket()" class="btn btn-outline-warning"><i class="fa fa-add"> افزودن به خرید</i></button>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card wow bounceInUp sevicecard bggray text-purple border-warning">
+          <div class="card-header p-0 border-0">
+            <a href=""> <img src="img/samsung/167172469756_t1.webp" alt="iphone" class="img-fluid w-100">
+            </a>
+          </div>
+          <div class="card-body text-center">
+            گوشی موبایل سامسونگ مدل galaxy A04 ظرفیت32/3 گیگابایت
+          </div>
+
+          <div class="card-footer bggray w-50 text-center mx-auto mb-4 border-warning text-purple">
+            4,149,000 <div class="font-size-price">تومان</div>
+          </div>
+
+        </div>
+        <button onclick="addbasket()" class="btn btn-outline-warning"><i class="fa fa-add"> افزودن به خرید</i></button>
+      </div>
+
+
+      <div class="col-6 col-md-3 d-none d-md-block">
+        <div class="card wow bounceInUp sevicecard bggray text-purple border-warning">
+          <div class="card-header p-0 border-0">
+            <a href=""> <img src="img/samsung/167180313613_t3.webp" alt="iphone" class="img-fluid w-100">
+            </a>
+          </div>
+          <div class="card-body text-center">
+            گوشی موبایل سامسونگ مدل galaxy F41 ظرفیت64 گیگابایت
+          </div>
+
+          <div class="card-footer bggray w-50 text-center mx-auto mb-4 border-warning text-purple">
+            ناموجود
+          </div>
+
+        </div>
+        <button onclick="addbasket()" class="btn btn-outline-warning"><i class="fa fa-add"> افزودن به خرید</i></button>
+      </div>
+
+      <div class="col-6 col-md-3 d-none d-md-block">
+        <div class="card wow bounceInUp sevicecard bggray text-purple border-warning">
+          <div class="card-header p-0 border-0">
+            <a href=""> <img src="img/samsung/168353588700_t1.webp" alt="iphone" class="img-fluid w-100">
+            </a>
+          </div>
+          <div class="card-body text-center">
+            گوشی موبایل سامسونگ مدل galaxy A14 ظرفیت64/4 گیگابایت
+
+
+
+          </div>
+
+          <div class="card-footer bggray w-50 text-center mx-auto mb-4
+          border-warning text-purple ">
+            ناموجود
+          </div>
+
+        </div>
+        <button onclick="addbasket()" class="btn btn-outline-warning"><i class="fa fa-add"> افزودن به خرید</i></button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-9 col-md-10">
+        <div class="fw-bold font-size-tittle text-purple">ساعت و مچ بند هوشمند</div>
+      </div>
+      <div class="col-3 col-md-2 ">
+        <div class="fw-bold borderleft p-1 border-warning text-purple"> <a href="#"
+            class="text-decoration-none text-secondary"> مشاهده همه</div>
+        </a>
+      </div>
+      <div class="border-bottom  mt-3"></div>
+    </div>
+
+  </div>
+
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-6 col-md-3">
+        <div class="card wow bounceInUp  sevicecard2 bggray text-purple border-warning">
+          <div class="card-header p-0 border-0">
+            <a href=""> <img src="img/saathoshmand/cbETGlUvp2if_t1.webp" alt="iphone" class="img-fluid w-100">
+            </a>
+          </div>
+          <div class="card-body text-center">
+            ساعت هوشمند هوآوی مدل band8
+          </div>
+
+          <div class="card-footer bggray w-50 text-center mx-auto mb-4 border-warning text-purple">
+            2,580,000 <div class="font-size-price">تومان</div>
+          </div>
+
+        </div>
+        <button onclick="addbasket()" class="btn btn-outline-warning"><i class="fa fa-add"> افزودن به خرید</i></button>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card wow bounceInUp  sevicecard2 bggray text-purple border-warning">
+          <div class="card-header p-0 border-0">
+            <a href=""> <img src="img/saathoshmand/H4fb_xrVZdYn_t1.webp" alt="iphone" class="img-fluid w-100">
+            </a>
+          </div>
+          <div class="card-body text-center">
+            Amazfit ساعت هوشمند شیائمی مدل
+          </div>
+
+          <div class="card-footer bggray w-50 text-center mx-auto mb-4 border-warning text-purple">
+            2,500,000 <div class="font-size-price">تومان</div>
+          </div>
+        </div>
+        <button onclick="addbasket()" class="btn btn-outline-warning"><i class="fa fa-add"> افزودن به خرید</i></button>
+      </div>
+
+
+      <div class="col-6 col-md-3 d-none d-md-block">
+        <div class="card wow bounceInUp  sevicecard2 bggray text-purple border-warning">
+          <div class="card-header p-0 border-0">
+            <a href=""> <img src="img/saathoshmand/mJSAjluhfaMD_t1.webp" alt="iphone" class="img-fluid w-100">
+            </a>
+          </div>
+          <div class="card-body text-center">
+            ساعت هوشمند شیائمی مدل imiki TG1
+          </div>
+
+          <div class="card-footer bggray w-50 text-center mx-auto mb-4 border-warning text-purple">
+            3,999,000 <div class="font-size-price">تومان</div>
+          </div>
+
+        </div>
+        <button onclick="addbasket()" class="btn btn-outline-warning"><i class="fa fa-add"> افزودن به خرید</i></button>
+      </div>
+
+      <div class="col-6 col-md-3 d-none d-md-block">
+        <div class="card wow bounceInUp  sevicecard2 bggray text-purple border-warning">
+          <div class="card-header p-0 border-0">
+            <a href=""> <img src="img/saathoshmand/T1iVRyK4BD0C_t1.webp" alt="iphone" class="img-fluid w-100">
+            </a>
+          </div>
+          <div class="card-body text-center">
+            ساعت هوشمند کیسلک
+
+
+          </div>
+
+          <div class="card-footer bggray w-50 text-center mx-auto mb-4
+          border-warning text-purple ">
+            3,000,000 <div class="font-size-price">تومان</div>
+          </div>
+
+        </div>
+        <button onclick="addbasket()" class="btn btn-outline-warning"><i class="fa fa-add"> افزودن به خرید</i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid picture">
+
+  </div>
+
+  <div class="container">
+    <div class="row mt-5   ">
+      <div class="col-9 col-md-10 ">
+        <div class="fw-bold font-size-tittle border-warning text-purple">برند های منتخب :</div>
+        <div class="border-bottom  mt-3"></div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row mt-2">
+        <div class="col-4 col-md-2">
+          <a href=""> <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="64" height="64"
+              viewBox="0 0 64 64">
+              <path
+                d="M54.166,19.783c-0.258,0.162-6.401,3.571-6.401,11.13c0.29,8.621,7.752,11.644,7.88,11.644	c-0.128,0.162-1.127,4.119-4.085,8.267C49.213,54.398,46.607,58,42.65,58c-3.764,0-5.115-2.381-9.458-2.381	c-4.664,0-5.984,2.381-9.555,2.381c-3.957,0-6.756-3.795-9.232-7.335c-3.216-4.633-5.95-11.903-6.047-18.883	c-0.065-3.699,0.644-7.335,2.444-10.423c2.541-4.312,7.077-7.238,12.031-7.335c3.795-0.128,7.173,2.606,9.49,2.606	c2.22,0,6.37-2.606,11.065-2.606C45.415,14.026,50.82,14.636,54.166,19.783z M32.002,13.285c-0.676-3.378,1.19-6.756,2.927-8.911	C37.149,1.769,40.655,0,43.678,0c0.193,3.378-1.03,6.691-3.216,9.104C38.5,11.71,35.122,13.671,32.002,13.285z">
+              </path>
+            </svg></a>
+        </div>
+
+        <div class="col-4 col-md-2">
+          <a href="" class="samsung">
+            <iconify-icon icon="simple-icons:samsung"></iconify-icon>
+            <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+          </a>
+        </div>
+
+        <div class="col-4 col-md-2 ">
+          <a href="" class="p-1"><img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEMAAABDCAYAAADHyrhzAAAACXBIWXMAAAsTAAALEwEAmpwYAAADn0lEQVR4nO3X7UtTURwHcN/2J2zT7c5AjCgKehNB0eOLCIIogny5dGaaD9Dc1dJmEZJRGBVR1BsRQim1pzdCENWLQHNtU9N8mNO5Tdecbmc6c/7i+lR272xed3fPmecH33e/3XvuZ+ece09KCq3VhcrS9wRZbctmTMCozVqFETRqTyBWC5szzA2KwVIMoDODpcsE6J7B0g0U6NuEpa9WoN8ZLP3oAvoFytLPcaBnE5Ye1EB+BHpQg7hihEw7IVRzQLKgim0x/6uBK5kwWb1fMIHyDOlnRvjNdZC0InMQGTZDuKkc0NXMNcfif3A66mWGbh5JAoy/KuL5AdP3jovC6Kw8BO4SdfJgcBVBE4BuHxSFYc5WwpSRSR4MrsIOC6Cy9HVjtOkU0JOnSi4MriYenROFwWV0zeUiBcZ8BMY/1K0r3k/PIdD7BeYjc/C/Gmt9zJvysWJ8zVaAv5RJHMb8r9mVm683trJ9gBy2NTEmre95Uz5WDC7dF1RkYLTpFGAu3A6zfk/Uhwv2ty30OYvUojAWflusJgOjTaeA4cbo+1FwsGNxyp9XgM/AiMLgfjth0JCBYS7asbD3CBWyW/4sK70KgiyzbgwuXbkqeTDa9RpwvbsvmC7TUcHBej83CGMMWVf12QvSRGEszMBCdeIxOvIzog524Em+4ECdzTXCGA4br9dde0oUxuJS05CLERru4vX2VJ8UhcGlM3dxqZGJMdLN6/2+AQwujktpZGJMO3vijtGuU4K7WP2UPIzR3rhjcOm9qPpIHoarDz+MmdfyYMy4B/DDmH5VJQ+GZxA/jGCLSR6MMTt+GFPN8mCExx34YfibZMLwDuOH4Xt5TR6Mn078MLwv5MGY9bnwwxhrrJQHw+/GD8PVIBeGBz8Me/MdQAjxEg4hPkZBpmAvl75nJYKDG3r7ULA/5BOYGTVnol7fZjomPUZXfRX0tNbzMthSy7tRe95WwV4utltnBQdnqzMJ9vc33eX1WioOR72+uXSv9BhTRgaselVMNyIhG8JAyyA5yQGyYQy0BGLRK2V/GCwwEKuFyVLyQeKGgZZBcsgFiSsGIhwk7hiIO8ARCiIJBloBIestIxkG4kAMZIFIioFWQMhYMpJjIIL2kIRgIEJAEoaBlpbMN4xBEoqBMAdJOAZitTBhYMCcI//DY4GBOJDLDJiz5QfAAgMtLRkrRkuGhwHFqVtC5YwmURkp0ey26VOzsEiectcqDFq0Uv6t31TW+mJV/EsOAAAAAElFTkSuQmCC"></a>
+        </div>
+        <div class=" col-4 col-md-2 d-none d-md-block ">
+          <a href=""><iconify-icon icon="cib:nokia" class="nokia"></iconify-icon></a>
+        </div>
+        <div class="col-4 col-md-2 d-none d-md-block ">
+          <iconify-icon icon="file-icons:motorola" class="motorola"></iconify-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="video" id="class-kol">
+    <video muted autoplay loop>
+      <source src="video/wave-cafe-video-bg.mp4">
+    </video>
+  </div>
+  <span id="class-kol">
+    <div class="p-0 container-fluid   d-none d-md-flex">
+      <div class="container">
+        <div class="row mt-5">
+          <div class="col-12 col-md-3">
+            <h6 class=" mb-2 mt-5"> آدرس:</h6>
+            <p class="mb-2  text-white"><i class="fa fa-map-marker me-3" style="color: rgb(255, 0, 0);"></i>خیابان عبادی
+              /نبش عبادی !</p>
+            <h6 class=" mb-2 mt-4 text-white"> تلفن :</h6>
+            <p class="mb-2  text-white"><i class="fa fa-phone me-3 " style="color: rgb(0, 123, 255);"></i>09032081381
+            </p>
+            <h6 class=" mb-2 mt-4 text-white">ایمیل :</h6>
+            <p class="mb-2  text-white"><i class="fa fa-envelope me-3 "
+                style="color: rgb(255, 255, 0);"></i>info@example.com</p>
+          </div>
+          <div class="col-12 col-md-3">
+            <h5 class=" mb-4 mt-5">اطلاعات :</h5>
+            <a class="btn btn-link text-decoration-none text-white d-block text-start mt-2 p-0"
+              href="./linkd/forosh.html">فروش ویژه</a>
+            <a class="btn btn-link text-decoration-none text-white d-block text-start mt-2 p-0" href="">محصولات جدید</a>
+            <a class="btn btn-link text-decoration-none text-white d-block text-start mt-2 p-0"
+              href="./index1.html">تماس با ما</a>
+            <a class="btn btn-link text-decoration-none text-white d-block text-start mt-2 p-0" href=""></a>
+            <a class="btn btn-link text-decoration-none text-white d-block text-start mt-2 p-0" href=""></a>
+          </div>
+          <div class="col-12 col-md-3">
+            <h5 class=" mb-4 mt-5"> دسترسی سریع:</h5>
+            <a class="btn btn-link text-decoration-none text-white d-block text-start mt-2 p-0"
+              href="./linkd/forosh.html">گوشی آیفون</a>
+            <a class="btn btn-link text-decoration-none text-white d-block text-start mt-2 p-0"
+              href="./linkd/samsung.html">گوشی سامسونگ</a>
+            <a class="btn btn-link text-decoration-none text-white d-block text-start mt-2 p-0" href="">گوشی شیائمی</a>
+            <a class="btn btn-link text-decoration-none text-white d-block text-start mt-2 p-0" href="">گوشی نوکیا</a>
+            <a class="btn btn-link text-decoration-none text-white d-block text-start mt-2 p-0"
+              href="./linkd/saat.html">ساعت و مچ بند
+              هوشمند</a>
+            <a class="btn btn-link text-decoration-none text-white d-block text-start mt-2 p-0" href=""></a>
+            <a class="btn btn-link text-decoration-none text-white d-block text-start mt-2 p-0" href=""></a>
+            <a class="btn btn-link text-decoration-none text-white d-block text-start mt-2 p-0" href=""></a>
+          </div>
+
+          <div class="col-12 col-md-3">
+            <h5 class=" mb-4 mt-5">لینک های مفید :</h5>
+
+            <a class="btn btn-link text-decoration-none text-white d-block text-start mt-2 p-0"
+              href="./index2.html">روند ارسال
+              سفارش</a>
+            <a class="btn btn-link text-decoration-none text-dark d-block text-start mt-2 p-0" href=""></a>
+          </div>
+
+
+        </div>
+
+
+
+        <head>
+          <meta charset="UTF-8" />
+          <link rel="stylesheet" type="text/css" href="styles.css" />
+          <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        </head>
+
+        <div class="wrapper">
+          <div class="icon telegram">
+            <div class="tooltip">telegram</div>
+            <span><i class="fa fa-telegram"></i></span>
+          </div>
+          <div class="icon twitter">
+            <div class="tooltip">Twitter</div>
+            <span><i class="fa fa-twitter"></i></span>
+          </div>
+          <div class="icon instagram">
+            <div class="tooltip">Instagram</div>
+            <span><i class="fa fa-instagram"></i></span>
+          </div>
+          <div class="icon github">
+            <div class="tooltip">Github</div>
+            <span><i class="fa fa-github"></i></span>
+          </div>
+          <div class="icon youtube">
+            <div class="tooltip">YouTube</div>
+            <span><i class="fa fa-youtube-play"></i></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class=" container-fluid mt-4">
+      <div class="row  margin-class">
+        <div class="col-12 d-md-none ">
+          <div id="accordion">
+            <div class="card w-100 mt-2">
+              <div class="card-header">
+                <a class="btn" data-bs-toggle="collapse" href="#collapse1"><i class="fa fa-caret-down"
+                    aria-hidden="true"></i>
+                  آدرس:
+                </a>
+              </div>
+              <div id="collapse1" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body">
+
+                  خیابان عبادی ...<br>
+
+                </div>
+              </div>
+            </div>
+            <div class="card w-100 mt-3">
+              <div class="card-header">
+                <a class="btn" data-bs-toggle="collapse" href="#collapse5"><i class="fa fa-caret-down"
+                    aria-hidden="true"></i>
+                  تلفن :
+                </a>
+              </div>
+              <div id="collapse5" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body">
+
+                  09032081381<br>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="card w-100 mt-3">
+              <div class="card-header">
+                <a class="collapsed btn" data-bs-toggle="collapse" href="#collapse2"><i class="fa fa-caret-down"
+                    aria-hidden="true"></i>
+                  اطلاعات:
+                </a>
+              </div>
+              <div id="collapse2" class="collapse" data-bs-parent="#accordion">
+                <div class="card-body">
+                  <a href="./linkd/forosh.html" class="text-decoration-none text-dark"> فروش ویژه </a><br>
+                  <a href="./index3.html" class="text-decoration-none text-dark"> محصولات جدید </a><br>
+                  <a href="./index1.html" class="text-decoration-none text-dark"> تماس با ما </a>
+                </div>
+              </div>
+            </div>
+            <div class="card w-100 mt-3">
+              <div class="card-header">
+                <a class="collapsed btn" data-bs-toggle="collapse" href="#collapse3"><i class="fa fa-caret-down"
+                    aria-hidden="true"></i>
+                  دسترسی سریع
+                </a>
+              </div>
+              <div id="collapse3" class="collapse" data-bs-parent="#accordion">
+                <div class="card-body">
+                  <a href="./linkd/saat.html" class="text-decoration-none text-dark py-5">ساعت و مچ بند هوشمند </a><br>
+                  <a href="./linkd/apple.html" class="text-decoration-none text-dark"> گوشی آیفون</a><br>
+                  <a href="./linkd/samsung.html" class="text-decoration-none text-dark"> گوشی سامسونگ</a><br>
+                  <a href="#" class="text-decoration-none text-dark"> گوشی نوکیا</a><br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </span>
+
+</body>
+
+</html>
